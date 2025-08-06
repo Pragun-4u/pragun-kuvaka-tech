@@ -32,10 +32,10 @@ export default function ChatPage() {
 
   useEffect(() => {
     const scrollRef = scrollAreaRef.current;
-    if (scrollRef && currentChat && !currentChat.isTyping) {
+    if (scrollRef && !currentChat.isTyping) {
       scrollRef.scrollTo({ top: scrollRef.scrollHeight, behavior: "smooth" });
     }
-  }, [currentChat, currentChat?.messages.length, currentChat?.isTyping]);
+  }, [currentChat?.isTyping]);
 
   useEffect(() => {
     const scrollRef = scrollAreaRef.current;
@@ -56,8 +56,7 @@ export default function ChatPage() {
         getPreviousMessages(id);
 
         setTimeout(() => {
-          const newHeight = viewport.scrollHeight;
-          viewport.scrollTop = newHeight - previousHeight;
+          viewport.scrollTo({ top: 0, behavior: "smooth" });
           setIsLoadingOlder(false);
         }, 1000);
       }
