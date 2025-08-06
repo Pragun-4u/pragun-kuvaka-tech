@@ -7,6 +7,5 @@ export default async function Home() {
   if (error) {
     return <div>Error: {error}</div>;
   }
-
   return <Login data={data} />;
 }
