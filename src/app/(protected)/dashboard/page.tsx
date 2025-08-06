@@ -77,14 +77,18 @@ export default function DashboardPage() {
 
   useEffect(() => {
     const lowercasedQuery = searchQuery.toLowerCase().trim();
+    let timer: NodeJS.Timeout;
     if (lowercasedQuery === "") {
       setFilteredChatrooms(chatFormatted);
     } else {
-      const filtered = chatFormatted.filter((chatroom) =>
-        chatroom.name.toLowerCase().includes(lowercasedQuery)
-      );
-      setFilteredChatrooms(filtered);
+      timer = setTimeout(() => {
+        const filtered = chatFormatted.filter((chatroom) =>
+          chatroom.name.toLowerCase().includes(lowercasedQuery)
+        );
+        setFilteredChatrooms(filtered);
+      }, 1000);
     }
+    return () => clearTimeout(timer);
   }, [searchQuery, chatFormatted]);
 
   return (
