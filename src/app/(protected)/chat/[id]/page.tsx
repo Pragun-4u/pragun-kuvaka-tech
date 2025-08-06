@@ -35,7 +35,7 @@ export default function ChatPage() {
     if (scrollRef && currentChat && !currentChat.isTyping) {
       scrollRef.scrollTo({ top: scrollRef.scrollHeight, behavior: "smooth" });
     }
-  }, [currentChat?.messages.length, currentChat?.isTyping]);
+  }, [currentChat, currentChat?.messages.length, currentChat?.isTyping]);
 
   useEffect(() => {
     const scrollRef = scrollAreaRef.current;
